@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="SolicitudViewDlg" widgetVar="SolicitudViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewSolicitudTitle}">
+            <h:form id="SolicitudViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{solicitudController.selected != null}">
+                        <h:outputText value="#{bundle.ViewSolicitudLabel_id}"/>
+                        <h:outputText value="#{solicitudController.selected.id}" title="#{bundle.ViewSolicitudTitle_id}"/>
+                        <h:outputText value="#{bundle.ViewSolicitudLabel_fechaHora}"/>
+                        <h:outputText value="#{solicitudController.selected.fechaHora}" title="#{bundle.ViewSolicitudTitle_fechaHora}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewSolicitudLabel_montoDeseado}"/>
+                        <h:outputText value="#{solicitudController.selected.montoDeseado}" title="#{bundle.ViewSolicitudTitle_montoDeseado}"/>
+                        <h:outputText value="#{bundle.ViewSolicitudLabel_ingresosMenuales}"/>
+                        <h:outputText value="#{solicitudController.selected.ingresosMenuales}" title="#{bundle.ViewSolicitudTitle_ingresosMenuales}"/>
+                        <h:outputText value="#{bundle.ViewSolicitudLabel_observaciones}"/>
+                        <h:outputText value="#{solicitudController.selected.observaciones}" title="#{bundle.ViewSolicitudTitle_observaciones}"/>
+                        <h:outputText value="#{bundle.ViewSolicitudLabel_asesorId}"/>
+                        <h:outputText value="#{solicitudController.selected.asesorId}" title="#{bundle.ViewSolicitudTitle_asesorId}"/>
+                        <h:outputText value="#{bundle.ViewSolicitudLabel_clienteId}"/>
+                        <h:outputText value="#{solicitudController.selected.clienteId}" title="#{bundle.ViewSolicitudTitle_clienteId}"/>
+                        <h:outputText value="#{bundle.ViewSolicitudLabel_solicitudEstadoId}"/>
+                        <h:outputText value="#{solicitudController.selected.solicitudEstadoId}" title="#{bundle.ViewSolicitudTitle_solicitudEstadoId}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="SolicitudViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

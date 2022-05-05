@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ReferenciaEditDlg" widgetVar="ReferenciaEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditReferenciaTitle}">
+            <h:form id="ReferenciaEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{referenciaController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditReferenciaLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{referenciaController.selected.id}" title="#{bundle.EditReferenciaTitle_id}" required="true" requiredMessage="#{bundle.EditReferenciaRequiredMessage_id}"/>
+                        <p:outputLabel value="#{bundle.EditReferenciaLabel_nombres}" for="nombres" />
+                        <p:inputText id="nombres" value="#{referenciaController.selected.nombres}" title="#{bundle.EditReferenciaTitle_nombres}" required="true" requiredMessage="#{bundle.EditReferenciaRequiredMessage_nombres}"/>
+                        <p:outputLabel value="#{bundle.EditReferenciaLabel_apellidos}" for="apellidos" />
+                        <p:inputText id="apellidos" value="#{referenciaController.selected.apellidos}" title="#{bundle.EditReferenciaTitle_apellidos}" required="true" requiredMessage="#{bundle.EditReferenciaRequiredMessage_apellidos}"/>
+                        <p:outputLabel value="#{bundle.EditReferenciaLabel_telefono}" for="telefono" />
+                        <p:inputText id="telefono" value="#{referenciaController.selected.telefono}" title="#{bundle.EditReferenciaTitle_telefono}" required="true" requiredMessage="#{bundle.EditReferenciaRequiredMessage_telefono}"/>
+                        <p:outputLabel value="#{bundle.EditReferenciaLabel_direccion}" for="direccion" />
+                        <p:inputText id="direccion" value="#{referenciaController.selected.direccion}" title="#{bundle.EditReferenciaTitle_direccion}" required="true" requiredMessage="#{bundle.EditReferenciaRequiredMessage_direccion}"/>
+                        <p:outputLabel value="#{bundle.EditReferenciaLabel_solicitudId}" for="solicitudId" />
+                        <p:selectOneMenu id="solicitudId" value="#{referenciaController.selected.solicitudId}" required="true" requiredMessage="#{bundle.EditReferenciaRequiredMessage_solicitudId}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{solicitudController.itemsAvailableSelectOne}"
+                                           var="solicitudIdItem"
+                                           itemValue="#{solicitudIdItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{referenciaController.update}" value="#{bundle.Save}" update="display,:ReferenciaListForm:datalist,:growl" oncomplete="handleSubmit(args, 'ReferenciaEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="ReferenciaEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

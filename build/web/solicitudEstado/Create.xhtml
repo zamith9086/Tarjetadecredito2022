@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="SolicitudEstadoCreateDlg" widgetVar="SolicitudEstadoCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateSolicitudEstadoTitle}">
+            <h:form id="SolicitudEstadoCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{solicitudEstadoController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateSolicitudEstadoLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{solicitudEstadoController.selected.id}" title="#{bundle.CreateSolicitudEstadoTitle_id}" required="true" requiredMessage="#{bundle.CreateSolicitudEstadoRequiredMessage_id}"/>
+                        <p:outputLabel value="#{bundle.CreateSolicitudEstadoLabel_nombre}" for="nombre" />
+                        <p:inputText id="nombre" value="#{solicitudEstadoController.selected.nombre}" title="#{bundle.CreateSolicitudEstadoTitle_nombre}" required="true" requiredMessage="#{bundle.CreateSolicitudEstadoRequiredMessage_nombre}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{solicitudEstadoController.create}" value="#{bundle.Save}" update="display,:SolicitudEstadoListForm:datalist,:growl" oncomplete="handleSubmit(args,'SolicitudEstadoCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="SolicitudEstadoCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
